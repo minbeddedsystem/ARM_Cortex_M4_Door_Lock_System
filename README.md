@@ -1,4 +1,3 @@
-[README.md](https://github.com/user-attachments/files/30935015/README.md)
 # 🔐 ARM Cortex-M4 Smart Door Lock System
 
 STM32F411RE(ARM Cortex-M4, Nucleo-F411RE)를 **레지스터 직접 제어 방식(Bare-metal, HAL 미사용)**으로 구현한 비밀번호 인증형 도어락 시스템입니다. 4x4 키패드로 비밀번호를 입력받아 I2C LCD와 8x8 도트매트릭스로 인증 결과를 표시하고, 서보모터 PWM으로 잠금 개폐 동작을 모사합니다.
@@ -27,6 +26,8 @@ STM32F411RE(ARM Cortex-M4, Nucleo-F411RE)를 **레지스터 직접 제어 방식
 - **타이머 자원 분리**: PWM(TIM2), 매트릭스 갱신(TIM3), Lockout 카운트(TIM4), 범용 딜레이(TIM5)를 서로 충돌 없이 독립 배치
 
 ## 🏗️ System Block Diagram
+
+![System Block Diagram](images/system_block_diagram.png)
 
 ```
                  +------------------------+
