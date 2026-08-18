@@ -27,35 +27,11 @@ STM32F411RE(ARM Cortex-M4, Nucleo-F411RE)를 **레지스터 직접 제어 방식
 
 ## 🏗️ System Block Diagram
 
-![System Block Diagram](images/system_block_diagram.png)
-
-```
-                 +------------------------+
-   4x4 Keypad -- |                        |
-   (GPIO 직결)   |                        | -- LCD 1602 (I2C1)
-                 |                        |
-   Servo Motor --|   STM32F411RE (Nucleo) | -- 8x8 Dot Matrix
-   (PWM, TIM2)   |                        |    (GPIO Mux, TIM3 인터럽트)
-                 |                        |
-                 +-----------+------------+
-                              |
-                         UART2 (115200bps)
-                              |
-                        Tera Term (PC)
-```
+![System Block Diagram](images/block_diagram_clean.png)
 
 ### 상태 머신
 
-```
-   [IDLE] --키 입력--> [INPUT] --'#' 입력--> [CHECK]
-      ^                   |                     |
-      |                 '*' 입력                |
-      |                (입력 초기화)      일치 --+-- 불일치
-      |                                    |            |
-      +-------------- 3초 후 --[UNLOCK]<--+            |
-      |                                                 |
-      +---------------- 10초 후 --[LOCKOUT]<-- 3회 누적 -+
-```
+![State Machine](images/state_machine.png)
 
 | 상태 | LCD 출력 | 매트릭스 아이콘 | 세부 동작 |
 |---|---|---|---|
